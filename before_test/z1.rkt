@@ -1,12 +1,11 @@
 #lang racket
 
-(define (delete x l) (
-                      if (null? l)
-                      l
-                     (if (= x (car l))
-                           (cdr l)
-                           (cons (car l) (delete x (cdr l))))
-                     ))
+(define (delete x l) 
+  (if (null? l)
+    l
+    (if (= x (car l))
+      (cdr l)
+      (cons (car l) (delete x (cdr l))))))
 
 (delete 3 '(1 2 3 4))
 
