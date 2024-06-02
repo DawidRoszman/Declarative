@@ -1,0 +1,22 @@
+#lang racket
+(define (fold f e l)
+    (if (null? l)
+        e
+        (f (car l) (fold f e (cdr l)))))
+; (fold (lambda (x y) (cons (* x 2) y)) '() '(1 2 3))
+(define (exchange x y l)
+    (fold (lambda (z c)
+        (if (= x z)
+            (cons y c)
+            (cons z c))) '() l)
+    )
+(exchange 1 7 '(1 2 4 5 1 8))
+
+(define (drop-while p l)
+    (if (null? l)
+        '()
+        (if (not(p (car l)))
+            '()
+            (cons (car l) (drop-while p (cdr l))))))
+(drop-while even? '(2 4 6 1 3 2))
+(drop-while even? '())

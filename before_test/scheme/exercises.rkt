@@ -89,8 +89,33 @@
 (fib_acc 6)
 
 ;Z8
+(define (power b e) 
+   (if (= e 0) 
+     1 
+     (* b (power b (- e 1))) 
+     )) 
+; (define (exp b e) |#
+;   (power (power b (/ e 2)) 2)) |#
+    
 (define (exp b e)
-  (if (= b 0)
+  (cond [(zero? e) 1]
+    [(even? e) (power (exp b (/ e 2)) 2)]
+    [else (* b (power (exp b (/ (- e 1) 2)) 2))]))
+(exp 2 5)
+
+;Z9
+(define (product term next a b)
+  (if (zero? b)
     1
-    (* (/ e 2) (exp (- b 1) e))))
-(exp 2 4)
+    (product term (* a a) a (- b 1))))
+
+(product 2 0 2 5)
+
+; Z10
+
+
+
+
+
+
+
