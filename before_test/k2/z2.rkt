@@ -3,10 +3,11 @@
     (if (null? l) e (f (car l) (fold f e (cdr l)))))
 
 (define (exists pred l)
-    (not (empty? (fold (lambda (x y) (
+    (empty? (fold (lambda (x y) (
         if (pred x)
+            y
             (cons x y)
-            y)) '() l)))
+            )) '() l))
 )
 (exists even? '(1 1 1))
 
